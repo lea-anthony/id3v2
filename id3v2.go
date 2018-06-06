@@ -379,6 +379,19 @@ func (f Frames) Lookup(id FrameID) *Frame {
 	return nil
 }
 
+// LookupAll returns all frames associated with the
+// given frame id. Empty list if none.
+func (f Frames) LookupAll(id FrameID) Frames {
+	result := Frames{}
+	for i := len(f) - 1; i >= 0; i-- {
+		if f[i].ID == id {
+			result = append(result, f[i])
+		}
+	}
+
+	return result
+}
+
 // Frame is a single ID3v2 frame.
 type Frame struct {
 	ID      FrameID
